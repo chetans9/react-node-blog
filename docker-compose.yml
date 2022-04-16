@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    image: node-react-blog:1.0
+    environment:
+      - DEBUG=react-node-blog:server
+    ports:
+      - "8000:3000"
+    container_name: node-react-blog-backend
+    volumes:
+      - ./backend:/app
+
+  client :
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    image: node-react-blog-frontend:1.0
+    environment:
+    - CHOKIDAR_USEPOLLING=true
+    - PORT=4000
+    - NODE_OPTIONS=--openssl-legacy-provider
+    ports:
+      - "4001:4000"
+    container_name: node-react-blog-client
+    volumes:
+      - ./client/src:/app-client/src
+
+      
+
+  mysql_db_container:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_db_data_container:/var/lib/mysql
+  adminer_container:
+    image: adminer:latest
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql_db_container
+    ports:
+      - 8080:8080
+volumes:
+  mysql_db_data_container:
+
