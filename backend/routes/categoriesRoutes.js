@@ -6,4 +6,6 @@ let categoriesController = require('../controllers/categories/categoriesControll
 
 router.get('/',categoriesController.index);
 
+router.get('/select-data', categoriesController.categoriesSelectData );
+
 module.exports = router;

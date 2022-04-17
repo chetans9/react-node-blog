@@ -7,6 +7,7 @@ import NotFoundComponent from './components/NotFoundComponent';
 import PostCategoryComponent from './components/Posts/PostCategoryComponent';
 import LoginComponent from './components/Auth/LoginComponent';
 import ProfileComponent from './components/Profile/ProfileComponent';
+import CreatePostComponent from './components/Profile/CreatePostComponent';
 
 const AppRoutes = function () {
 
@@ -27,6 +28,10 @@ const AppRoutes = function () {
         <Route path="/profile">
           <Route index element={<ProfileComponent />} />
           <Route path="posts" element={<LoginComponent />} />
+
+          <Route path="posts/create" element={<CreatePostComponent />} />
+
+          
         </Route>
 
 

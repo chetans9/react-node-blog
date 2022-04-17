@@ -26,3 +26,27 @@ exports.index = async function (req, res, next) {
 
 
 }
+
+
+exports.categoriesSelectData = async function (req, res, next) {
+
+    try {
+
+       // console.log(categoriesModel);
+
+        let categories = await CategoriesModel.findAll({
+
+            attributes: ['id', 'title']
+
+        });
+        return res.json(categories);
+
+    } catch (err) {
+
+
+        next(err);
+    }
+
+
+
+}
