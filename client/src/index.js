@@ -4,10 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
-
 import { Provider } from 'react-redux';
+import axios from 'axios';
 
 store.subscribe(() => { console.log(store.getState())});
+
+if(process.env.REACT_APP_JWT_MODE === 'local'){
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+
+}
+
+
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+axios.interceptors.request.use(request => {
+
+  return request;
+}, error => {
+  console.log(error);
+  return Promise.reject(error);
+});
+
+
 
 ReactDOM.render(
   <React.StrictMode>

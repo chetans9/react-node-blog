@@ -5,6 +5,13 @@ var contactUsController = require('../controllers/contactUsController');
 let passport = require('passport');
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+  console.log(process.env.REACT_APP_JWT_SECRET);
+
+  return res.send(req.cookies);
+
+  console.log(req.cookie['jwt']);
+  //return req.cookies['jwt'];
   res.render('index', { title: 'Express' });
 });
 

@@ -48,6 +48,8 @@ router.post('/login', async function(req, res, next) {
       let token = jwt.sign(payload, process.env.JWT_SECRET);
       response.token = token;
 
+      res.cookie('jwt',token, { httpOnly: false, maxAge: 24 * 60 * 60 * 1000 })
+
       return res.json(response);
 
     }

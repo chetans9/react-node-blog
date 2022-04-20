@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-// import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,6 +16,7 @@ function LoginComponent(props) {
         password : ''
 
     });
+    let navigate = useNavigate();
 
     const [number, setNumber] = useState(1);
 
@@ -33,6 +34,14 @@ function LoginComponent(props) {
         e.preventDefault();
 
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, formState).then((res)=>{
+
+            let token = res.data.token;
+
+            localStorage.setItem('jwt', token);
+
+            navigate('/profile');
+
+            
 
 
         }).catch((err) => {
