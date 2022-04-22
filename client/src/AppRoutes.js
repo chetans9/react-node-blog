@@ -9,6 +9,10 @@ import LoginComponent from './components/Auth/LoginComponent';
 import ProfileComponent from './components/Profile/ProfileComponent';
 import CreatePostComponent from './components/Profile/CreatePostComponent';
 
+
+
+
+
 const AppRoutes = function () {
 
     return (
