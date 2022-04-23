@@ -13,7 +13,7 @@ function PostForm(props){
             <div className="mb-3">
                 <label htmlFor="category" className="form-label">Category</label>
 
-                <select className="form-control" name='category_id' onChange={handleInputChange} >
+                <select className="form-control" name='category_id' onChange={handleInputChange} value={formData.category_id}>
                 <option value={""} key={0}>Select</option>
 
                     {categories.map((category) => {

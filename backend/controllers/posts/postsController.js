@@ -160,6 +160,38 @@ exports.createPost = async function(req,res,next){
 
 }
 
+exports.editDetails = async function(req,res,next){
+
+
+    try{
+
+
+
+        let post = await postsModel.findOne({
+            where : { 
+                id : req.params.id
+            },
+            include : [{
+                model : categoriesModel,
+                as : 'category',
+                
+            }]
+        });
+    
+        return res.json(post);
+
+    }catch(err){
+
+        return next(err);
+
+
+    }
+
+
+
+
+}
+
 
 exports.updatePost = async function(req,res,next){
 
