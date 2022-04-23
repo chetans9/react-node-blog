@@ -9,6 +9,7 @@ import LoginComponent from './components/Auth/LoginComponent';
 import ProfileComponent from './components/Profile/ProfileComponent';
 import CreatePostComponent from './components/Profile/CreatePostComponent';
 import EditPostComponent from './components/Profile/EditPostComponent';
+import PostsListComponet from './components/Profile/PostsListComponent';
 
 
 
@@ -32,10 +33,11 @@ const AppRoutes = function () {
 
         <Route path="/profile">
           <Route index element={<ProfileComponent />} />
-          <Route path="posts" element={<LoginComponent />} />
+          <Route path="posts" element={<PostsListComponet />} />
 
           <Route path="posts/create" element={<CreatePostComponent />} />
           <Route path="posts/:id/edit" element={<EditPostComponent />} />
+          
 
           
         </Route>
