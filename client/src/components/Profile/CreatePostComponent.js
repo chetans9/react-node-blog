@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import ProfileSideBarComponent from './ProfileSideBarComponent';
 import { useNavigate } from "react-router-dom";
 import PostForm from './PostForm';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -25,7 +25,7 @@ function CreatePostComponent(props) {
         loadFormData();
     }, []);
 
-    const loadFormData = async function(){
+    const loadFormData = async function () {
 
         let categories = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/categories/select-data`);
         setCategories(categories.data);
@@ -33,23 +33,19 @@ function CreatePostComponent(props) {
 
     }
 
-    const handleInputChange = (event) => {
+    // const handleInputChange = (event) => {
 
 
-        setFormData((prevProps) => ({
-            ...prevProps,
-            [event.target.name]: event.target.value
-        }));
-    };
+    //     setFormData((prevProps) => ({
+    //         ...prevProps,
+    //         [event.target.name]: event.target.value
+    //     }));
+    // };
 
-    const handleSubmit = function(e){
+    const handleSubmit = function (values) {
 
-        e.preventDefault();
-        
-
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, formData).then(function(res){
-
-            //useNavigate();
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, values).then(function (res) {
+            
             navigate("/profile/posts");
 
         }).catch((err) => {
@@ -64,11 +60,28 @@ function CreatePostComponent(props) {
 
     return <>
 
-    { (loading  === true) ? "Loading" :  
-    
-    <PostForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} formData={formData} categories={categories} />
+        {(loading === true) ? "Loading" :
 
-    }
+            <div>
+                <div>
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
+                            <li className="breadcrumb-item"><Link to="/profile/posts">Posts</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">Create Post</li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div className='header'>
+                    <h4>Create Post</h4>
+                </div>
+                <hr></hr>
+                <PostForm handleSubmit={handleSubmit} formData={formData} categories={categories} />
+            </div>
+
+
+        }
 
 
     </>

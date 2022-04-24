@@ -71,13 +71,14 @@ function PostsListComponet(props) {
                         </div>
 
                         <div className='post-list'>
-                            <table className='table table-primary'>
+                            <table className='table'>
 
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>Created at</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
 
@@ -87,6 +88,10 @@ function PostsListComponet(props) {
                                         <td>{post.id}</td>
                                         <td>{post.title}</td>
                                         <td>{post.createdAt}</td>
+                                        <td>
+                                            <Link to={"/profile/posts/" + post.id + "/edit"}>Edit</Link>
+
+                                        </td>
                                     </tr>
 
 

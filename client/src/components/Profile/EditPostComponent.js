@@ -4,6 +4,7 @@ import ProfileSideBarComponent from './ProfileSideBarComponent';
 import { useNavigate } from "react-router-dom";
 import PostForm from './PostForm';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -28,11 +29,11 @@ function EditPostComponent(props) {
 
     }, []);
 
-    const loadFormData = async function(){
+    const loadFormData = async function () {
 
-        
 
-        let  reqData  = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`);
+
+        let reqData = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`);
         let formReqData = reqData.data;
 
 
@@ -42,7 +43,7 @@ function EditPostComponent(props) {
             category_id: formReqData.category_id,
         });
 
-        
+
 
         // for (const property in formReqData) {
         //     if (formData[property] !== null) {
@@ -50,9 +51,9 @@ function EditPostComponent(props) {
         //     }
         // }
 
-       // setFormData(formReqData);
+        // setFormData(formReqData);
 
-        
+
 
         let categories = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/categories/select-data`);
         setCategories(categories.data);
@@ -60,23 +61,19 @@ function EditPostComponent(props) {
 
     }
 
-    const handleInputChange = (event) => {
+    // const handleInputChange = (event) => {
 
 
-        setFormData((prevProps) => ({
-            ...prevProps,
-            [event.target.name]: event.target.value
-        }));
-    };
+    //     setFormData((prevProps) => ({
+    //         ...prevProps,
+    //         [event.target.name]: event.target.value
+    //     }));
+    // };
 
-    const handleSubmit = function(e){
+    const handleSubmit = function (values) {
 
-        e.preventDefault();
-        
+        axios.patch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`, values).then(function (res) {
 
-        axios.patch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`, formData).then(function(res){
-
-            //useNavigate();
             navigate("/profile/posts");
 
         }).catch((err) => {
@@ -91,11 +88,28 @@ function EditPostComponent(props) {
 
     return <>
 
-    { (loading  === true) ? "Loading" :  
-    
-    <PostForm handleSubmit={handleSubmit} handleInputChange={handleInputChange} formData={formData} categories={categories} />
+        {(loading === true) ? "Loading" :
 
-    }
+            <div>
+
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
+                        <li className="breadcrumb-item"><Link to="/profile/posts">Posts</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">Edit Post</li>
+                    </ol>
+                </nav>
+
+
+                <div className='header'>
+                    <h4>Edit Post</h4>
+                </div>
+                <hr></hr>
+                <PostForm handleSubmit={handleSubmit} formData={formData} categories={categories} />
+            </div>
+
+
+        }
 
 
     </>
