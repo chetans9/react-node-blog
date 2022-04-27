@@ -46,7 +46,7 @@ function CreatePostComponent(props) {
 
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, values).then(function (res) {
             
-            navigate("/profile/posts");
+            navigate("/profile/posts",{state : {alertType : "success", alertMsg : "Post Created successfully" }});
 
         }).catch((err) => {
 

@@ -4,6 +4,7 @@ import ProfileSideBarComponent from './ProfileSideBarComponent';
 import { useNavigate } from "react-router-dom";
 import PostForm from './PostForm';
 import { Link } from 'react-router-dom';
+import Messages from '../Partials/Messages';
 
 import axios from 'axios';
 
@@ -37,6 +38,9 @@ function PostsListComponet(props) {
     return <>
 
         <div>
+            
+
+            
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
@@ -49,6 +53,7 @@ function PostsListComponet(props) {
             <h4>You Posts</h4>
         </div>
         <hr></hr>
+        <Messages/>
 
 
 

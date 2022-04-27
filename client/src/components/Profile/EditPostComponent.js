@@ -74,7 +74,7 @@ function EditPostComponent(props) {
 
         axios.patch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`, values).then(function (res) {
 
-            navigate("/profile/posts");
+            navigate("/profile/posts", {state : {alertType : "success", alertMsg : "Post Updated successfully" }});
 
         }).catch((err) => {
 
