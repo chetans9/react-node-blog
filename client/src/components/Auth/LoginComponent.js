@@ -2,13 +2,18 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { createStore } from 'redux';
 import { useNavigate } from "react-router-dom";
+import changeNumber from "../../reducers/counter";
+import { increment } from '../../actions';
 
 
 
 function LoginComponent(props) {
 
     const myState = useSelector((state) => state.changeNumber);
+
+    let store = createStore(changeNumber);
 
     const [formState, setFormState] = useState({
 
@@ -52,6 +57,16 @@ function LoginComponent(props) {
 
     }
 
+    let incrementNum = function(){
+
+
+        // store.dispatch({
+        //     typee
+        // })
+
+
+    }
+
     return <div id="LoginForm">
 
         <div>
@@ -78,6 +93,8 @@ function LoginComponent(props) {
                         <input type="submit" className="btn btn-primary" id="submit" />
                     </div>
                 </form>
+
+                <button type='button' onClick={incrementNum}>increment</button>
 
 
             </div>

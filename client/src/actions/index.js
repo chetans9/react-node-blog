@@ -16,3 +16,17 @@ export const decrement = () => {
 
 
 }
+
+export const setLogin = () => {
+
+    return {
+        type: "LOGIN",
+        payload: {
+          username: null,
+        }
+
+    }
+
+
+
+}
