@@ -37,7 +37,7 @@ function PostsListComponet(props) {
 
     return <>
 
-        <div>
+        {/* <div>
             
 
             
@@ -47,23 +47,20 @@ function PostsListComponet(props) {
                     <li className="breadcrumb-item active" aria-current="page">Library</li>
                 </ol>
             </nav>
-        </div>
+        </div> */}
 
-        <div className='header'>
+        {/* <div className='header'>
             <h4>You Posts</h4>
-        </div>
-        <hr></hr>
-        <Messages/>
+        </div> */}
+        {/* <hr></hr> */}
+        {/* <Messages/> */}
 
 
 
 
-        <div className='row'>
-            <div className='col-sm-3'>
-                <ProfileSideBarComponent></ProfileSideBarComponent>
 
-            </div>
-            <div className='col-sm-8'>
+
+
 
                 {(loading === true) ? "Loading" :
 
@@ -116,11 +113,6 @@ function PostsListComponet(props) {
 
                 }
 
-
-
-            </div>
-
-        </div>
 
 
 

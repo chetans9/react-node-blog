@@ -3,13 +3,12 @@ import { useState } from 'react';
 import ProfileSideBarComponent from './ProfileSideBarComponent';
 // import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import Messages from '../Partials/Messages';
 
 
 function ProfileComponent(props) {
-
-
+    
     return <>
 
         <div>
@@ -24,21 +23,17 @@ function ProfileComponent(props) {
             <h4>Profile</h4>
         </div>
         <hr></hr>
-        <Messages/>
-
+        <Messages />
 
         <div className='row'>
             <div className='col-sm-3'>
                 <ProfileSideBarComponent></ProfileSideBarComponent>
-
             </div>
 
+            <div className='col-sm-8'>
+                <Outlet></Outlet>
+            </div>
         </div>
-
-
-
-
-
     </>
 
 

@@ -63,7 +63,7 @@ function CreatePostComponent(props) {
         {(loading === true) ? "Loading" :
 
             <div>
-                <div>
+                {/* <div>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
@@ -71,12 +71,12 @@ function CreatePostComponent(props) {
                             <li className="breadcrumb-item active" aria-current="page">Create Post</li>
                         </ol>
                     </nav>
-                </div>
+                </div> */}
 
-                <div className='header'>
+                {/* <div className='header'>
                     <h4>Create Post</h4>
-                </div>
-                <hr></hr>
+                </div> */}
+                {/* <hr></hr> */}
                 <PostForm handleSubmit={handleSubmit} formData={formData} categories={categories} />
             </div>
 

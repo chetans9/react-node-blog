@@ -31,8 +31,8 @@ const AppRoutes = function () {
 
         <Route path="/login" element={<LoginComponent />} />
 
-        <Route path="/profile">
-          <Route index element={<ProfileComponent />} />
+        <Route path="/profile" element={<ProfileComponent />}>
+          {/* <Route index element={<ProfileComponent />} /> */}
           <Route path="posts" element={<PostsListComponet />} />
 
           <Route path="posts/create" element={<CreatePostComponent />} />

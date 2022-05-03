@@ -92,19 +92,19 @@ function EditPostComponent(props) {
 
             <div>
 
-                <nav aria-label="breadcrumb">
+                {/* <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
                         <li className="breadcrumb-item"><Link to="/profile/posts">Posts</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">Edit Post</li>
                     </ol>
-                </nav>
+                </nav> */}
 
 
-                <div className='header'>
+                {/* <div className='header'>
                     <h4>Edit Post</h4>
-                </div>
-                <hr></hr>
+                </div> */}
+                {/* <hr></hr> */}
                 <PostForm handleSubmit={handleSubmit} formData={formData} categories={categories} />
             </div>
 
