@@ -44,7 +44,13 @@ function CreatePostComponent(props) {
 
     const handleSubmit = function (values) {
 
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, values).then(function (res) {
+        const formData = new FormData();
+        for ( const key in values ) {
+            formData.append(key, values[key]);
+        }
+
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, formData ).then(function (res) {
+            
             
             navigate("/profile/posts",{state : {alertType : "success", alertMsg : "Post Created successfully" }});
 

@@ -29,7 +29,7 @@ function PostForm(props) {
         >
             {formik => (
 
-                <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
                     <div className="mb-3">
                         <label htmlFor="Title" className="form-label">Title</label>
                         <Field name="title" type="text" className={(formik.errors.title && formik.touched.title) ? 'form-control is-invalid' : "form-control"} placeholder="Title" id="Title" />
@@ -61,6 +61,18 @@ function PostForm(props) {
                         <label htmlFor="description" className="form-label">Description</label>
                         <Field name="description" component="textarea" className={(formik.errors.description && formik.touched.description ) ? 'form-control is-invalid' : "form-control"}  placeholder="Description" id="description" />
                         <ErrorMessage name="description" render={renderError} />
+                    </div>
+
+
+                    <div className="mb-3">
+
+                    <label htmlFor="post_image" className="form-label">Post Image</label>
+
+                    <input id="post_image" name="post_image" type="file" onChange={(event) => {
+                                formik.setFieldValue("post_image", event.currentTarget.files[0]);
+                    }}  className={(formik.errors.post_image && formik.touched.post_image ) ? 'form-control is-invalid' : "form-control"}/>
+
+
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </form>

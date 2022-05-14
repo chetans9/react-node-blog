@@ -124,8 +124,9 @@ exports.createPost = async function(req,res,next){
             {
                 title : Joi.string().min(3).max(190).required(),
                 description : Joi.string().min(5).required(),
-                category_id : Joi.number().required()
-                
+                category_id : Joi.number().required(),
+                post_image : Joi.any().optional()
+                 
             
             }
 
@@ -143,9 +144,6 @@ exports.createPost = async function(req,res,next){
         let save_data = {...req.body};
         save_data.slug = convertToSlug(save_data.title);
         save_data.user_id = req.user.id;
-
-         console.log("==================",req.user.id);
-
 
         let post = await postsModel.create(save_data, { fields: ['title','description','category_id','slug', 'user_id'] });
     
