@@ -18,3 +18,10 @@
 .post-list{
   margin-top: 20px;
 }
+
+#post-img{
+
+  max-height:100%; 
+  max-width:100%
+
+}

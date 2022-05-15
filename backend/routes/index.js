@@ -6,9 +6,9 @@ let passport = require('passport');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  console.log(process.env.REACT_APP_JWT_SECRET);
+  console.log(req.protocol + '://' +  req.get('host'));
 
-  return res.send(req.cookies);
+  return res.send(req.baseUrl);
 
   console.log(req.cookie['jwt']);
   //return req.cookies['jwt'];

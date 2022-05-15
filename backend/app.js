@@ -35,6 +35,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Set application  base URL based on requst : 
+app.use((req,res,next) => {
+  req.hostUrl = req.protocol + '://' +  req.get('host');
+  next();
+
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

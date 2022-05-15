@@ -15,12 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
         foreignKey : 'category_id',
         as: 'category'
-
-
        });
-
-
-
       
     }
   }
@@ -29,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     slug: DataTypes.TEXT,
     description: DataTypes.TEXT,
     category_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER
+    user_id: DataTypes.INTEGER,
+    post_image : DataTypes.STRING
   }, {
     sequelize,
     modelName: 'PostsModel',

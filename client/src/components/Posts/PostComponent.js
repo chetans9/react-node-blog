@@ -41,6 +41,10 @@ function PostComponent(props) {
       <div className='post-details'>
         <div className='text-center' id='post-title'>
           <h3>{post.title}</h3>
+          <div id='post-img-section'>
+            <img id='post-img' src={post.post_image}></img>
+
+          </div>
           
           </div>
 

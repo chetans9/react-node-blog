@@ -3,6 +3,8 @@ let postsModel = models.PostsModel;
 const Joi = require('joi');
 let { formErrors } = require('../../util/validationErrors');
 let categoriesModel = models.CategoriesModel;
+let fs = require('fs');
+const path = require('path');
 
 /**
  * 
@@ -102,6 +104,8 @@ exports.postDetail = async function(req,res,next){
                 
             }]
         });
+        
+        post.post_image = req.hostUrl + "/images/"  + post.post_image;
     
         return res.json(post);
 
@@ -146,6 +150,18 @@ exports.createPost = async function(req,res,next){
         save_data.user_id = req.user.id;
 
         let post = await postsModel.create(save_data, { fields: ['title','description','category_id','slug', 'user_id'] });
+
+        //Move uploaded image 
+
+        // console.log("Image ",req.file);
+        if(req.file){
+            
+            let ext = path.extname(req.file.originalname);
+            fs.renameSync(req.file.path, 'public/images/' + req.file.filename + ext);
+            post.post_image = req.file.filename + ext;
+            await post.save();
+        }
+
     
         return res.json(post);
 
@@ -202,7 +218,8 @@ exports.updatePost = async function(req,res,next){
             {
                 title : Joi.string().min(3).max(190).required(),
                 description : Joi.string().min(5).required(),
-                category_id : Joi.number().required()
+                category_id : Joi.number().required(),
+                post_image : Joi.any().optional()
                 
             
             }
@@ -234,6 +251,16 @@ exports.updatePost = async function(req,res,next){
 
 
         post = await post.update(save_data, { fields: ['title','description','category_id','slug'] });
+
+        if(req.file){
+            
+            let ext = path.extname(req.file.originalname);
+            fs.renameSync(req.file.path, 'public/images/' + req.file.filename + ext);
+            post.post_image = req.file.filename + ext;
+            await post.save();
+
+        }
+       
     
         return res.json(post);
 
