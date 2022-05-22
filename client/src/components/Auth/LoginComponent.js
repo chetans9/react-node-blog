@@ -1,52 +1,37 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { createStore } from 'redux';
 import { useNavigate } from "react-router-dom";
-import changeNumber from "../../reducers/counter";
-import { increment } from '../../actions';
-
 
 
 function LoginComponent(props) {
 
-    const myState = useSelector((state) => state.changeNumber);
-
-    let store = createStore(changeNumber);
-
     const [formState, setFormState] = useState({
 
-        user_name : '',
-        password : ''
+        user_name: '',
+        password: ''
 
     });
     let navigate = useNavigate();
 
     const [number, setNumber] = useState(1);
 
-
-
-
     const handleInputChange = (event) => {
         setFormState((prevProps) => ({
-          ...prevProps,
-          [event.target.name]: event.target.value
+            ...prevProps,
+            [event.target.name]: event.target.value
         }));
-      };
+    };
 
     let submitForm = (e) => {
         e.preventDefault();
 
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, formState).then((res)=>{
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, formState).then((res) => {
 
             let token = res.data.token;
-
             localStorage.setItem('jwt', token);
-
+            localStorage.setItem('authUser', res.data.user);
             navigate('/profile');
-
-            
 
 
         }).catch((err) => {
@@ -57,24 +42,7 @@ function LoginComponent(props) {
 
     }
 
-    let incrementNum = function(){
-
-
-        // store.dispatch({
-        //     typee
-        // })
-
-
-    }
-
     return <div id="LoginForm">
-
-        <div>
-
-            {myState}
-
-
-        </div>
 
         <div className='row'>
             <div className='col-sm-6 offset-sm-3'>
@@ -89,12 +57,10 @@ function LoginComponent(props) {
                     </div>
 
                     <div className="mb-3">
-                        
+
                         <input type="submit" className="btn btn-primary" id="submit" />
                     </div>
                 </form>
-
-                <button type='button' onClick={incrementNum}>increment</button>
 
 
             </div>

@@ -9,7 +9,6 @@ let { UsersModel } = require('../models');
 
 router.post('/login', async function(req, res, next) {
 
-
   let response = {};
 
   response.token = null;
@@ -26,6 +25,16 @@ router.post('/login', async function(req, res, next) {
 
   let hash = user.password;
 
+  let authUser = {
+
+    name : user.user_name,
+    first_name : user.first_name,
+    roles : []
+  };
+
+
+
+
   authUtil.comparePassword(req.body.password, hash, function(err, isPasswordMatch){
 
    if(err){
@@ -33,8 +42,6 @@ router.post('/login', async function(req, res, next) {
    }
 
     if(isPasswordMatch && !err){
-
-      //res.send(process.env.JWT_SECRET);
 
       let payload = {
         sub : user.id,
@@ -47,6 +54,7 @@ router.post('/login', async function(req, res, next) {
 
       let token = jwt.sign(payload, process.env.JWT_SECRET);
       response.token = token;
+      response.user = authUser;
 
       res.cookie('jwt',token, { httpOnly: false, maxAge: 24 * 60 * 60 * 1000 })
 

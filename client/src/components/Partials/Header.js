@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-const Header = () => {
+const Header = (props) => {
+  
+  // let authUser = localStorage.getItem('jwt');
+
+  const isLoggedIn = props.isLoggedIn;
 
 
   return (
@@ -22,16 +26,13 @@ const Header = () => {
                 <NavLink className="nav-link" to="/contact-us">Contact</NavLink>
               </li>
 
-              <li className='nav-item'>
-
-
-                <NavLink className="nav-link" to="/Login">Login</NavLink>
-              </li>
+            {(isLoggedIn === true) ?
 
               <li className='nav-item'>
-
                 <NavLink className="nav-link" to="/profile">Profile</NavLink>
-              </li>
+              </li> : <li className='nav-item'>
+                <NavLink className="nav-link" to="/Login">Login</NavLink>
+              </li>}
 
             </ul>
           </div>
