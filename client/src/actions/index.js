@@ -1,26 +1,23 @@
-export const increment = () => {
-
-    return {
-        type : "INCREMENT"
-    }
-
-
-}
-
-
-export const decrement = () => {
-
-    return {
-        type : "INCREMENT"
-    }
-
-
-}
-
 export const setLogin = () => {
 
     return {
         type: "LOGIN",
+        payload: {
+          username: null,
+          first_name :null
+        }
+
+    }
+
+
+
+}
+
+
+export const setLogOut = () => {
+
+    return {
+        type: "LOGOUT",
         payload: {
           username: null,
         }

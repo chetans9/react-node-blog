@@ -2,9 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setLogin,setLogout } from '../../actions/index';
 
 
 function LoginComponent(props) {
+
+    const dispatch = useDispatch();
 
     const [formState, setFormState] = useState({
 
@@ -14,7 +18,7 @@ function LoginComponent(props) {
     });
     let navigate = useNavigate();
 
-    const [number, setNumber] = useState(1);
+    
 
     const handleInputChange = (event) => {
         setFormState((prevProps) => ({
@@ -29,8 +33,20 @@ function LoginComponent(props) {
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, formState).then((res) => {
 
             let token = res.data.token;
+
             localStorage.setItem('jwt', token);
             localStorage.setItem('authUser', res.data.user);
+
+            //console.log(setLogin());
+
+            dispatch(setLogin());
+
+            
+
+
+            
+
+
             navigate('/profile');
 
 

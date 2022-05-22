@@ -1,15 +1,12 @@
-import changeNumber from "./counter";
+import authReducer from "./authReducer";
 
 import { combineReducers } from 'redux';
-
+/**
+ * Combine Reducers 
+ */
 
 const rootReducer = combineReducers({
-
-
-    changeNumber
-
-
-
+    isLoggedIn : authReducer
 });
 
 

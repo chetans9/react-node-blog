@@ -1,12 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 const Header = (props) => {
   
-  // let authUser = localStorage.getItem('jwt');
-
-  const isLoggedIn = props.isLoggedIn;
-
-
+  const { isLoggedIn }  = useSelector((state) => state);
+  
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark" id="appNavBar">
@@ -38,14 +37,6 @@ const Header = (props) => {
           </div>
         </div>
       </nav>
-      {/* <header className="py-5 bg-light border-bottom mb-4">
-        <div className="container">
-          <div className="text-center my-5">
-            <h1 className="fw-bolder">Welcome to Blog Home!</h1>
-            <p className="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
-          </div>
-        </div>
-      </header> */}
     </div>
 
 

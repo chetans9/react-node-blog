@@ -1,29 +1,17 @@
 const isLoggedIn = false;
 
-const authState = (state = isLoggedIn, action) => {
-
+const authReducer = (state = isLoggedIn, action) => {
 
     switch(action.type){
-
         case 'LOGIN' :
+            return true;
 
+        case 'LOGOUT' : 
+            return false;
 
-            
-        state = true
-
-        return state;
-
-
-        
-        case 'DECREMENT' :  return state + 1;
-
-
-        default : return state
-
+        default : 
+        return state
     }
-
-
-
 }
 
-export default changeNumber;
+export default authReducer;
