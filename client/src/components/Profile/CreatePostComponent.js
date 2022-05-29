@@ -11,11 +11,11 @@ function CreatePostComponent(props) {
 
     let editMode = false;
 
-    const [formData, setFormData] = useState({
+    const formData = {
         title: "",
         description: "",
         category_id: "",
-    });
+    };
 
     const [loading, setLoading] = useState(true);
     let [categories, setCategories] = useState([]);
@@ -49,7 +49,7 @@ function CreatePostComponent(props) {
             formData.append(key, values[key]);
         }
 
-        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, formData ).then(function (res) {
+        axios.post(`${process.env.REACT_APP_API_BASE_URL}/posts/create`, formData).then(function (res) {
             
             
             navigate("/profile/posts",{state : {alertType : "success", alertMsg : "Post Created successfully" }});
@@ -69,20 +69,6 @@ function CreatePostComponent(props) {
         {(loading === true) ? "Loading" :
 
             <div>
-                {/* <div>
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item"><Link to="/profile">Profile</Link></li>
-                            <li className="breadcrumb-item"><Link to="/profile/posts">Posts</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">Create Post</li>
-                        </ol>
-                    </nav>
-                </div> */}
-
-                {/* <div className='header'>
-                    <h4>Create Post</h4>
-                </div> */}
-                {/* <hr></hr> */}
                 <PostForm handleSubmit={handleSubmit} formData={formData} categories={categories} />
             </div>
 

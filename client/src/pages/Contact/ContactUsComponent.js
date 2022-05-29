@@ -42,12 +42,6 @@ class ContactUsComponent extends React.Component{
     this.saveForm();
     this.setState({redirect : '/'});
     //this.props.history.push(`/posts/}`);
-    
-
-    
-
-    
-
   }
 
   set(name){
@@ -96,12 +90,12 @@ class ContactUsComponent extends React.Component{
       <form onSubmit={this.submitForm}>
       <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">Name *</label>
-          <input type="text" className="form-control" value={this.state.name} id="exampleFormControlInput1" placeholder="John Doe" onChange={this.set('name')} />
+          <input type="text" className="form-control" value={this.state.name} id="exampleFormControlInput1" placeholder="John Doe" onChange={this.set('name')}  required/>
         </div>
 
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">Email address *</label>
-          <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="john.doe@example.com" value={this.state.email}   onChange={this.set('email')}/>
+          <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="john.doe@example.com" value={this.state.email}   onChange={this.set('email')} required/>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleFormControlTextarea1" className="form-label">Message</label>

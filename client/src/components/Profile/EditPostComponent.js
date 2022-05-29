@@ -72,7 +72,13 @@ function EditPostComponent(props) {
 
     const handleSubmit = function (values) {
 
-        axios.patch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`, values).then(function (res) {
+        const formData = new FormData();
+        for ( const key in values ) {
+            formData.append(key, values[key]);
+        }
+
+
+        axios.patch(`${process.env.REACT_APP_API_BASE_URL}/posts/${id}/edit`, formData).then(function (res) {
 
             navigate("/profile/posts", {state : {alertType : "success", alertMsg : "Post Updated successfully" }});
 

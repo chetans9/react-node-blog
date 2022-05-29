@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import PostCardComponent from './Posts/PostCardComponent';
-import CategoriesCardComponent from './Categories/CategoriesCardComponent';
-import Messages from './Partials/Messages';
+import PostCardComponent from '../components/Posts/PostCardComponent';
+import CategoriesCardComponent from '../components/Categories/CategoriesCardComponent';
+import Messages from '../components/Partials/Messages';
 
 
 class HomeComponent extends React.Component {

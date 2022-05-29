@@ -1,10 +1,10 @@
 // import React from 'react';
 import { useState } from 'react';
-import ProfileSideBarComponent from './ProfileSideBarComponent';
+import ProfileSideBarComponent from '../../components/Profile/ProfileSideBarComponent';
 // import axios from 'axios';
 
 import { Link, Outlet } from 'react-router-dom';
-import Messages from '../Partials/Messages';
+import Messages from '../../components/Partials/Messages';
 
 
 function ProfileComponent(props) {

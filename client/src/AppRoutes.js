@@ -1,16 +1,17 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PostComponent from './components/Posts/PostComponent';
-import ContactUsComponent from './components/Contact/ContactUsComponent';
-import HomeComponent from './components/HomeComponent';
-import NotFoundComponent from './components/NotFoundComponent';
+import ContactUsComponent from './pages/Contact/ContactUsComponent';
+import HomeComponent from './pages/HomeComponent';
+import NotFoundComponent from './pages/NotFoundComponent';
 import PostCategoryComponent from './components/Posts/PostCategoryComponent';
 import LoginComponent from './components/Auth/LoginComponent';
-import ProfileComponent from './components/Profile/ProfileComponent';
+import ProfileComponent from './pages/Profile/ProfileComponent';
 import CreatePostComponent from './components/Profile/CreatePostComponent';
 import EditPostComponent from './components/Profile/EditPostComponent';
 import PostsListComponet from './components/Profile/PostsListComponent';
 import ProtectedRoute from './ProtectedRoute';
+import ProfileDetailsComponent from  './components/Profile/ProfileDetailsComponent';
 
 
 
@@ -32,6 +33,7 @@ const AppRoutes = function () {
         <Route element={<ProtectedRoute></ProtectedRoute>}>
 
           <Route path="/profile" element={<ProfileComponent />}>
+            <Route path="details" element={<ProfileDetailsComponent />} />
             <Route path="posts" element={<PostsListComponet />} />
             <Route path="posts/create" element={<CreatePostComponent />} />
             <Route path="posts/:id/edit" element={<EditPostComponent />} />

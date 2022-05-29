@@ -9,6 +9,16 @@ function ProfileSideBarComponent() {
         </a> */}
 
         <div className="list-group list-group-flush border-bottom scrollarea">
+
+            <NavLink className="list-group-item list-group-item-action py-3 lh-tight" to="/profile/details">
+                <div className="d-flex w-100 align-items-center justify-content-between">
+                    <strong className="mb-1">Profile</strong>
+                </div>
+                <div className="col-10 mb-1 small">Profile details</div>
+            </NavLink>
+
+
+
             <NavLink className="list-group-item list-group-item-action py-3 lh-tight" to="/profile/posts" aria-current="true">
             {/* <a href="#" className="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true"> */}
                 <div className="d-flex w-100 align-items-center justify-content-between">
@@ -19,13 +29,6 @@ function ProfileSideBarComponent() {
                 <div className="col-10 mb-1 small">Add or Edit Posts</div>
             {/* </a> */}
             </NavLink>
-            <a href="#" className="list-group-item list-group-item-action py-3 lh-tight">
-                <div className="d-flex w-100 align-items-center justify-content-between">
-                    <strong className="mb-1">List group item heading</strong>
-                    <small className="text-muted">Tues</small>
-                </div>
-                <div className="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-            </a>
         </div>
     </div>
 
