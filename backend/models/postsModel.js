@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-       this.belongsTo(models.CategoriesModel,{
+      this.belongsTo(models.CategoriesModel, {
 
-        foreignKey : 'category_id',
+        foreignKey: 'category_id',
         as: 'category'
-       });
-      
+      });
+
     }
   }
   PostsModel.init({
@@ -25,11 +25,22 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     category_id: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
-    post_image : DataTypes.STRING
+    post_image: DataTypes.STRING,
+    thumb_image: {
+      type: DataTypes.VIRTUAL,
+
+      get() {
+        return `thumb_${this.post_image}`;
+      },
+      set(value) {
+        throw new Error('`thumb_image` is vitual value!');
+      }
+
+    }
   }, {
     sequelize,
     modelName: 'PostsModel',
-    tableName : 'posts'
+    tableName: 'posts'
   });
   return PostsModel;
 };

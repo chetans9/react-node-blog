@@ -5,6 +5,7 @@ let { formErrors } = require('../../util/validationErrors');
 let categoriesModel = models.CategoriesModel;
 let fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
 /**
  * 
@@ -29,6 +30,22 @@ exports.index = async function(req,res,next){
         where : whereStatement
     });
     const totalPages = Math.ceil(posts.count / limit);
+    
+
+    
+    
+    
+
+    // let postsData= posts.rows.map((element) => {
+
+
+    //     let thumb_image = req.hostUrl + "/images/"  + 'thumb_'+ element.post_image;
+    //     return { ...element, thumb_image : thumb_image  }
+    // });    
+
+    
+
+    
     let responseData = {
         totalItems : posts.count,
         data : posts.rows,
@@ -160,6 +177,15 @@ exports.createPost = async function(req,res,next){
             fs.renameSync(req.file.path, 'public/images/' + req.file.filename + ext);
             post.post_image = req.file.filename + ext;
             await post.save();
+
+            sharp('public/images/' + req.file.filename + ext).resize(600,600, { fit: 'inside'})
+            .toFile('public/images/' + 'thumb_' +req.file.filename + ext, function(err) {
+
+                console.log(err);
+            });
+            
+
+
         }
 
     
@@ -258,6 +284,13 @@ exports.updatePost = async function(req,res,next){
             fs.renameSync(req.file.path, 'public/images/' + req.file.filename + ext);
             post.post_image = req.file.filename + ext;
             await post.save();
+
+            sharp('public/images/' + req.file.filename + ext).resize(600,600, { fit: 'inside'})
+            .toFile('public/images/' + 'thumb_' +req.file.filename + ext, function(err) {
+
+                console.log(err);
+            });
+            
 
         }
        
