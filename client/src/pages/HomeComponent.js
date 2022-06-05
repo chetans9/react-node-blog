@@ -5,6 +5,7 @@ import CategoriesCardComponent from '../components/Categories/CategoriesCardComp
 import Messages from '../components/Partials/Messages';
 
 
+
 class HomeComponent extends React.Component {
 
   constructor(props) {
@@ -14,24 +15,48 @@ class HomeComponent extends React.Component {
     this.state = {
 
       loadingPosts: true,
+      page: 1,
+      prevY: 0,
+      prvePostsCount : 0,
       posts: []
     }
+
+  
     
 
 
 
   }
+  
 
   componentDidMount() {
 
-    // console.log("React props ", this.props);
+    
+    this.getPosts( this.state.page);
 
-    axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts`).then((result)=> {
+    var options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1.0
+    };
+
+    this.observer = new IntersectionObserver(
+      this.handleObserver.bind(this),
+      options
+    );
+    this.observer.observe(this.loadingRef);
+
+  }
+
+  getPosts(page){
+
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts?page=${page}`).then((result)=> {
+
 
       this.setState(
         {
           loadingPosts: false,
-          posts: result.data.data
+          posts: this.state.posts.slice().concat(result.data.data)
         }
       );
 
@@ -45,10 +70,30 @@ class HomeComponent extends React.Component {
 
   componentWillUnmount() {
 
-    clearInterval(this.timerID);
+    // clearInterval(this.timerID);
+  }
+
+  handleObserver(entities, observer) {
+
+    const y = entities[0].boundingClientRect.y;
+    
+    if (this.state.prevY > y) {
+
+      let curPage = this.state.page  + 1;
+      this.getPosts(curPage);
+      this.setState({ page: curPage });
+    }
+
+    this.setState({ prevY: y });
   }
 
   render() {
+
+    const loadingTextCSS = { display: this.state.loading ? "block" : "none" };
+    const loadingCSS = {
+      height: "100px",
+      margin: "30px"
+    };
 
     return <div className='container'>
 
@@ -74,7 +119,16 @@ class HomeComponent extends React.Component {
 
                   )
                 )
+
+                
               }
+
+            <div
+                  ref={loadingRef => (this.loadingRef = loadingRef)}
+                  style={loadingCSS}
+                >
+                  <span style={loadingTextCSS}>Loading...</span>
+                </div>
               
               
           </div>

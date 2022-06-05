@@ -16,7 +16,7 @@ const path = require('path');
 exports.index = async function(req,res,next){
 
     let whereStatement = {};
-    let pageSize = 20;
+    let pageSize = 10;
     let page = (req.query.page && req.query.page>=1) ? req.query.page :  1;
 
     let offset = (page * pageSize) - pageSize;
