@@ -5,7 +5,7 @@ import ContactUsComponent from './pages/Contact/ContactUsComponent';
 import HomeComponent from './pages/HomeComponent';
 import NotFoundComponent from './pages/NotFoundComponent';
 import PostCategoryComponent from './components/Posts/PostCategoryComponent';
-import LoginComponent from './components/Auth/LoginComponent';
+import LoginComponent from './pages/Auth/LoginComponent';
 import ProfileComponent from './pages/Profile/ProfileComponent';
 import CreatePostComponent from './components/Profile/CreatePostComponent';
 import EditPostComponent from './components/Profile/EditPostComponent';
