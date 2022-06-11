@@ -17,7 +17,7 @@ const sharp = require('sharp');
 exports.index = async function (req, res, next) {
     try {
 
-        let whereStatement = {d : "w"};
+        let whereStatement = {};
         let pageSize = 10;
         let page = (req.query.page && req.query.page >= 1) ? req.query.page : 1;
 

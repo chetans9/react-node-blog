@@ -11,10 +11,8 @@ import CreatePostComponent from './components/Profile/CreatePostComponent';
 import EditPostComponent from './components/Profile/EditPostComponent';
 import PostsListComponet from './components/Profile/PostsListComponent';
 import ProtectedRoute from './ProtectedRoute';
+import ErrorComponent from './pages/ErrorComponent';
 import ProfileDetailsComponent from  './components/Profile/ProfileDetailsComponent';
-
-
-
 
 
 const AppRoutes = function () {
@@ -41,7 +39,7 @@ const AppRoutes = function () {
 
 
         </Route>
-
+        <Route path="/error" element={<ErrorComponent />} />
         <Route path="*" element={<NotFoundComponent />} />
       </Routes>
   

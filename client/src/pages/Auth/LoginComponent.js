@@ -40,13 +40,6 @@ function LoginComponent(props) {
             //console.log(setLogin());
 
             dispatch(setLogin());
-
-            
-
-
-            
-
-
             navigate('/profile');
 
 

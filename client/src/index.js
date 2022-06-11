@@ -6,15 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-
+import './services/netwokSerivce';
 store.subscribe(() => { console.log(store.getState())});
 
-if(process.env.REACT_APP_JWT_MODE === 'local'){
+// if(process.env.REACT_APP_JWT_MODE === 'local'){
 
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
+//   axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
 
-}
-
+// }
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
