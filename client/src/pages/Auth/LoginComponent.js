@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setLogin,setLogout } from '../../actions/index';
+import { setLogin } from '../../actions/index';
 
 
 function LoginComponent(props) {

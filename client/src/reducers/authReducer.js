@@ -1,16 +1,18 @@
-const isLoggedIn = false;
+const isLoggedIn = localStorage.getItem('jwt') ? true : false;
 
 const authReducer = (state = isLoggedIn, action) => {
 
-    switch(action.type){
-        case 'LOGIN' :
+    switch (action.type) {
+        case 'LOGIN':
             return true;
 
-        case 'LOGOUT' : 
+        case 'LOGOUT':
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('authUser');
             return false;
 
-        default : 
-        return state
+        default:
+            return state
     }
 }
 
