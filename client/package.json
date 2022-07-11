@@ -17,6 +17,7 @@
     "react-scripts": "4.0.3",
     "formik": "^2.2.9",
     "redux": "^4.1.2",
+    "query-string": "^7.1.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
