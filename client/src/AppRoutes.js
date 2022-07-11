@@ -12,6 +12,7 @@ import EditPostComponent from './components/Profile/EditPostComponent';
 import PostsListComponet from './components/Profile/PostsListComponent';
 import ProtectedRoute from './ProtectedRoute';
 import ErrorComponent from './pages/ErrorComponent';
+import SearchPageComponent from './pages/SearchPageComponent';
 import ProfileDetailsComponent from  './components/Profile/ProfileDetailsComponent';
 
 
@@ -21,6 +22,7 @@ const AppRoutes = function () {
   
       <Routes>
         <Route exact path="/" element={<HomeComponent/>} />
+        <Route path="/search" element={<SearchPageComponent/>} />
         <Route exact path="/contact-us" element={<ContactUsComponent/>} />
 
         <Route path="/category/:title" element={<PostCategoryComponent />} />
@@ -36,8 +38,6 @@ const AppRoutes = function () {
             <Route path="posts/create" element={<CreatePostComponent />} />
             <Route path="posts/:id/edit" element={<EditPostComponent />} />
           </Route>
-
-
         </Route>
         <Route path="/error" element={<ErrorComponent />} />
         <Route path="*" element={<NotFoundComponent />} />

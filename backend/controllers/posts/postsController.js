@@ -31,22 +31,12 @@ exports.index = async function (req, res, next) {
             where: whereStatement
         });
         const totalPages = Math.ceil(posts.count / limit);
-
-
-
-
-
-
         // let postsData= posts.rows.map((element) => {
 
 
         //     let thumb_image = req.hostUrl + "/images/"  + 'thumb_'+ element.post_image;
         //     return { ...element, thumb_image : thumb_image  }
         // });    
-
-
-
-
         let responseData = {
             totalItems: posts.count,
             data: posts.rows,

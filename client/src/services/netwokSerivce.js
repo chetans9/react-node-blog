@@ -36,7 +36,7 @@ const responseSuccessHandler = response => {
         });
         
       }else if(error.response.status == 500){
-        window.location.href = "/error";
+       // window.location.href = "/error";
   
       }
       console.error(error.response.headers);

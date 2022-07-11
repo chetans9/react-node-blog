@@ -1,34 +1,23 @@
 
 import { useEffect, useState } from 'react';
-import ProfileSideBarComponent from './ProfileSideBarComponent';
-import { useNavigate } from "react-router-dom";
-import PostForm from './PostForm';
+// import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Messages from '../Partials/Messages';
 
 import axios from 'axios';
 
 
 function PostsListComponet(props) {
 
-    let editMode = false;
-
     const [loading, setLoading] = useState(true);
     let [posts, setPosts] = useState([]);
-    let navigate = useNavigate();
-
+    // let navigate = useNavigate();
+    
     useEffect(() => {
 
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile/posts`).then((result) => {
-
-
-
             setPosts(result.data.data);
             setLoading(false);
         });
-
-
-
 
     }, []);
 

@@ -1,40 +1,65 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+
 function ProfileDetailsComponent(props) {
+
+    const [loading, setLoading] = useState(true);
+    let [profile, setProfile] = useState([]);
+
+
+    useEffect(() => {
+
+        axios.get(`${process.env.REACT_APP_API_BASE_URL}/profile`).then((result) => {
+
+            setProfile(result.data);
+            setLoading(false);
+        });
+
+
+
+
+    }, []);
+
+
 
 
     return <>
+
+
         <div id="profile_details">
 
-            <table class="table caption-top">
-                <caption>Your Profile</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
+            {loading ? "Loading" :
+
+                <table class="table caption-top">
+                    <caption>Your Profile</caption>
+
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="col">User Name</th>
+                            <td scope="col">{profile.user_name}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <td scope="col">{profile.first_name}</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">Last Name</th>
+                            <td scope="col">{profile.last_name}</td>
+                        </tr>
+
+
+                        <tr>
+                            <th scope="col">Created at</th>
+                            <td scope="col">{profile.createdAt}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            }
 
 
         </div>

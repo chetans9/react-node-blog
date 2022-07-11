@@ -1,4 +1,4 @@
-let { PostsModel } = require('../../models');
+let { PostsModel, UsersModel } = require('../../models');
 
 /**
  * 
@@ -32,6 +32,36 @@ exports.index = async function (req, res, next) {
 
         };
         return res.json(responseData);
+
+
+
+    } catch (err) {
+
+        next(err);
+
+
+    }
+
+
+
+}
+
+
+exports.profileDetails = async function (req, res, next) {
+
+    try {
+
+        let profileDetails = await UsersModel.findOne({
+            attributes: ['id', 'user_name', 'first_name', 'last_name', 'createdAt'],
+            where: {
+                id: req.user.id
+            }
+
+        });
+
+
+     
+        return res.json(profileDetails);
 
 
 
