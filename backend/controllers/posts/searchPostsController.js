@@ -5,14 +5,22 @@ const { Op } = require('sequelize');
 
 exports.index = async function (req, res, next) {
     try {
-
-
+        
         let {query} =  req;
+        let where = {};
+        let order = [];
 
-        let whereStatement = {};
+        if(query.sort_by === 'newest'){
+
+            order.push(['createdAt', 'DESC']);
+
+        }
+        if(query.sort_by === 'oldest'){
+            order.push(['createdAt', 'ASC']);
+        }
 
         if(query.str){
-            whereStatement = { title : {[Op.like]: '%' + query.str + '%'} };
+            where = { title : {[Op.like]: '%' + query.str + '%'} };
             
         }
         let pageSize = 10;
@@ -25,7 +33,8 @@ exports.index = async function (req, res, next) {
             limit: limit,
             offset: offset,
             // attributes: ['id','title','slug','createdAt','category_id'],
-            where: whereStatement
+            where,
+            order,
         });
         const totalPages = Math.ceil(posts.count / limit); 
         let responseData = {
