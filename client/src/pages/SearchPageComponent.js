@@ -3,6 +3,7 @@ import axios from 'axios';
 import PostCardComponent from '../components/Posts/PostCardComponent';
 import queryString from 'query-string';
 import { useSearchParams } from "react-router-dom";
+
 function SearchPageComponent() {
 
     let [posts, setPosts] = useState([]);

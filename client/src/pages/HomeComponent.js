@@ -3,7 +3,7 @@ import axios from 'axios';
 import PostCardComponent from '../components/Posts/PostCardComponent';
 import CategoriesCardComponent from '../components/Categories/CategoriesCardComponent';
 import Messages from '../components/Partials/Messages';
-
+import SearchCardComponent from '../components/SearchCardComponent';
 
 
 class HomeComponent extends React.Component {
@@ -17,22 +17,22 @@ class HomeComponent extends React.Component {
       loadingPosts: true,
       page: 1,
       prevY: 0,
-      prvePostsCount : 0,
+      prvePostsCount: 0,
       posts: []
     }
 
-  
-    
+
+
 
 
 
   }
-  
+
 
   componentDidMount() {
 
-    
-    this.getPosts( this.state.page);
+
+    this.getPosts(this.state.page);
 
     var options = {
       root: null,
@@ -48,9 +48,9 @@ class HomeComponent extends React.Component {
 
   }
 
-  getPosts(page){
+  getPosts(page) {
 
-    axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts?page=${page}`).then((result)=> {
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts?page=${page}`).then((result) => {
 
 
       this.setState(
@@ -70,16 +70,15 @@ class HomeComponent extends React.Component {
 
   componentWillUnmount() {
 
-    // clearInterval(this.timerID);
   }
 
   handleObserver(entities, observer) {
 
     const y = entities[0].boundingClientRect.y;
-    
+
     if (this.state.prevY > y) {
 
-      let curPage = this.state.page  + 1;
+      let curPage = this.state.page + 1;
       this.getPosts(curPage);
       this.setState({ page: curPage });
     }
@@ -98,7 +97,7 @@ class HomeComponent extends React.Component {
     return <div className='container'>
 
       <Messages></Messages>
-      
+
       {/* {(this.props.location) ? this.props.location.state.msg : "not defined"} */}
 
       <div className='row'>
@@ -106,37 +105,41 @@ class HomeComponent extends React.Component {
 
           <div className="row">
 
-              {
-                this.state.loadingPosts === true ? 'Loading' :
+            {
+              this.state.loadingPosts === true ? 'Loading' :
 
                 this.state.posts.map((post, index) => (
 
-                  <div className='col-lg-6'  key={post.id}>
+                  <div className='col-lg-6' key={post.id}>
 
-                    <PostCardComponent post={post}/>
+                    <PostCardComponent post={post} />
 
                   </div>
 
-                  )
+                )
                 )
 
-                
-              }
+
+            }
 
             <div
-                  ref={loadingRef => (this.loadingRef = loadingRef)}
-                  style={loadingCSS}
-                >
-                  <span style={loadingTextCSS}>Loading...</span>
-                </div>
-              
-              
+              ref={loadingRef => (this.loadingRef = loadingRef)}
+              style={loadingCSS}
+            >
+              <span style={loadingTextCSS}>Loading...</span>
+            </div>
+
+
           </div>
 
 
         </div>
 
+
+
         <div className='col-lg-4'>
+
+          <SearchCardComponent></SearchCardComponent>
 
           <CategoriesCardComponent></CategoriesCardComponent>
 
