@@ -16,6 +16,10 @@ function LoginComponent(props) {
         password: ''
 
     });
+
+    const [errorMsg, setErrorMsg] = useState();
+
+
     let navigate = useNavigate();
 
     
@@ -32,15 +36,24 @@ function LoginComponent(props) {
 
         axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/login`, formState).then((res) => {
 
-            let token = res.data.token;
+            if(res.data.error){
 
-            localStorage.setItem('jwt', token);
-            localStorage.setItem('authUser', res.data.user);
+                setErrorMsg(res.data.error.message);
 
-            //console.log(setLogin());
 
-            dispatch(setLogin());
-            navigate('/profile');
+            }else{
+
+                let token = res.data.token;
+
+                localStorage.setItem('jwt', token);
+                localStorage.setItem('authUser', res.data.user);
+    
+                dispatch(setLogin());
+                navigate('/profile');
+
+
+            }
+
 
 
         }).catch((err) => {
@@ -52,8 +65,12 @@ function LoginComponent(props) {
     }
 
     return <div id="LoginForm">
-
+        <h3>Login</h3>
+        <hr></hr>
         <div className='row'>
+
+            {errorMsg ?   <div className='alert alert-danger'>{errorMsg}</div> : ""}
+           
             <div className='col-sm-6 offset-sm-3'>
                 <form onSubmit={submitForm}>
                     <div className="mb-3">

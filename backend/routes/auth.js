@@ -9,7 +9,16 @@ let { UsersModel } = require('../models');
 
 router.post('/login', async function(req, res, next) {
 
+
   let response = {};
+  let err_response = {
+    error : {
+      code : 0,
+      message : ""
+
+    }
+  };
+
 
   response.token = null;
   let user = await UsersModel.findOne({
@@ -20,7 +29,8 @@ router.post('/login', async function(req, res, next) {
   });
 
   if(!user){
-    return res.json("Invalid user");
+    err_response.error.message = "Invalid Username or Password";
+    return res.json(err_response);
   }
 
   let hash = user.password;
@@ -32,13 +42,11 @@ router.post('/login', async function(req, res, next) {
     roles : []
   };
 
-
-
-
   authUtil.comparePassword(req.body.password, hash, function(err, isPasswordMatch){
 
-   if(err){
-    return res.json(response);
+   if(!isPasswordMatch){
+    err_response.error.message = "Invalid Username or Password";
+    return res.json(err_response);
    }
 
     if(isPasswordMatch && !err){
