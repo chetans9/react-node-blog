@@ -3,18 +3,24 @@ import axios from 'axios';
 import PostCardComponent from '../components/Posts/PostCardComponent';
 import queryString from 'query-string';
 import { useSearchParams } from "react-router-dom";
+import PaginationComponent from '../components/Common/PaginationComponent';
 
 function SearchPageComponent() {
 
     let [posts, setPosts] = useState([]);
     let [loadingPosts, setLoadingPosts] = useState(true);
     let [searchParams, setSearchParams] = useSearchParams();
+    // let [currentPage,setCurrentPage] = useState(1);
+    let [paginationData,setPaginationData] = useState({
+        totalPages : 0,
+        currentPage : 0,
+    });
 
     //console.log(searchParams.get('str'));
     
 
     let [formData, setformData] = useState({
-            str: searchParams.get('str'),
+            str: searchParams.get('str') ? searchParams.get('str') : '',
             sort_by: searchParams.get('sort_by')
         }
     );
@@ -56,7 +62,12 @@ function SearchPageComponent() {
         let qs = queryString.stringify(formData);
         axios.get(`${process.env.REACT_APP_API_BASE_URL}/posts/search?${qs}`).then((result) => {
             setPosts(result.data.data);
-            setLoadingPosts(false);
+            setPaginationData({
+                totalPages : result.data.totalPages,
+                currentPage : result.data.currentPage,
+
+            });
+             setLoadingPosts(false);
         });
     }
 
@@ -137,6 +148,8 @@ function SearchPageComponent() {
 
             </div>
         </div>
+
+        <PaginationComponent {...paginationData}></PaginationComponent>
     </>
 
 
