@@ -26,7 +26,7 @@ const responseErrorHandler = (error) => {
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    if (error.response.status == 401) {
+    if (error.response.status === 401) {
 
 
       // localStorage.removeItem('jwt');
@@ -37,7 +37,7 @@ const responseErrorHandler = (error) => {
         type: "LOGOUT"
       });
 
-    } else if (error.response.status == 500) {
+    } else if (error.response.status === 500) {
       // window.location.href = "/error";
 
     }

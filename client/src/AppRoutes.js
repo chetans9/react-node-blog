@@ -14,7 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import ErrorComponent from './pages/ErrorComponent';
 import SearchPageComponent from './pages/SearchPageComponent';
 import ProfileDetailsComponent from  './components/Profile/ProfileDetailsComponent';
-
+import TestPageComponent from './pages/TestPageComponent';
 
 const AppRoutes = function () {
 
@@ -40,6 +40,8 @@ const AppRoutes = function () {
           </Route>
         </Route>
         <Route path="/error" element={<ErrorComponent />} />
+
+        <Route path="/test" element={<TestPageComponent />} />
         <Route path="*" element={<NotFoundComponent />} />
       </Routes>
   
