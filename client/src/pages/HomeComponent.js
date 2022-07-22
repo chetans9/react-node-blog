@@ -40,6 +40,8 @@ class HomeComponent extends React.Component {
       threshold: 1.0
     };
 
+    
+
     this.observer = new IntersectionObserver(
       this.handleObserver.bind(this),
       options
@@ -74,8 +76,10 @@ class HomeComponent extends React.Component {
 
   handleObserver(entities, observer) {
 
-    const y = entities[0].boundingClientRect.y;
 
+
+    const y = entities[0].boundingClientRect.y;
+    
     if (this.state.prevY > y) {
 
       let curPage = this.state.page + 1;

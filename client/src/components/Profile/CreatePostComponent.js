@@ -2,14 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import PostForm from './PostForm';
-import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
 
 function CreatePostComponent(props) {
 
-    let editMode = false;
+    // let editMode = false;
 
     const formData = {
         title: "",
